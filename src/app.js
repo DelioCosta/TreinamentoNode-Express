@@ -30,13 +30,28 @@ app.get("/products/:id", (req, res) => {
     });
 });
   
-app.put('/products/:id', function (req, res) {
-    res.json(req.body);
-})
+// app.put('/products/:id', function (req, res) {
+//     res.json(req.body);
+// });
+
+app.put("/products/:id", (req, res) => {
+    const { id } = req.params;
+  
+    res.json({
+      id,
+      ...(req.body || {}),
+    });
+  });
+  
+
+// app.delete('/products/:id', function (req, res) {    
+// res.send('DELETADO')
+// })
 
 app.delete('/products/:id', function (req, res) {
-    res.send('DELETADO')
-  })
+
+    res.status(204).send('');
+});
 
 app.get('/:name?', (req, res) =>{
     const {name} = req.params;
